@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs', { title }) %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <form action="/clothes/create" method="post">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description">
+
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price">
+
+        <!-- Transformar em dropdown. Pense em uma forma de deixar o usuário criar um(a) novo(a) caso não exista -->
+        <label for="size">Size</label>
+        <input type="text" name="size" id="size">
+
+        <label for="min_age">Minimum Age</label>
+        <input type="number" name="min_age" id="min_age">
+
+        <label for="max_age">Maximum Age</label>
+        <input type="number" name="max_age" id="max_age">
+
+        <!-- Transformar em dropdown. Pense em uma forma de deixar o usuário criar um(a) novo(a) caso não exista -->
+        <label for="color">Color</label>
+        <input type="text" name="color" id="color">
+
+        <!-- Transformar em dropdown. Pense em uma forma de deixar o usuário criar um(a) novo(a) caso não exista -->
+        <label for="type">Type</label>
+        <input type="text" name="type" id="type">
+        
+        <!-- Transformar em dropdown. Pense em uma forma de deixar o usuário criar um(a) novo(a) caso não exista -->
+        <label for="category">Category</label>
+        <input type="text" name="category" id="category">
+        
+        <button type="submit">Submit</button>
+    </form>
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>
