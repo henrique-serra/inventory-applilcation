@@ -1,8 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <%- include('./partials/head.ejs', { title }) %>
 <body>
     <%- include('./partials/nav.ejs') %>
+    
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" style="text-align: center; margin-bottom: 64px;">
+            <h1>Inventário de Roupinhas de Bebê</h1>
+            <p style="font-size: 20px; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Organize e gerencie todas as roupinhas do seu bebê de forma simples e prática
+            </p>
+            
+            <!-- Botões organizados por peso visual -->
+            <div class="button-group" style="justify-content: center;">
+                <a href="/clothes" class="btn btn-primary">Ver Roupinhas</a>
+                <a href="/clothes/create" class="btn btn-secondary">Adicionar Nova</a>
+            </div>
+        </section>
+        
+        <!-- Features Grid -->
+        <section class="grid" style="margin-bottom: 64px;">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>📏 Tamanhos</h3>
+                        <p>Organize por tamanhos desde RN até 3T, com idades correspondentes</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>🎨 Cores</h3>
+                        <p>Cataloguecom cores e códigos hex para fácil identificação</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>👕 Categorias</h3>
+                        <p>Separe por tipos: roupas do dia, pijamas, casacos e ocasiões especiais</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     
     <%- include('./partials/footer.ejs') %>
 </body>

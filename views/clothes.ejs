@@ -1,21 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <%- include('./partials/head.ejs', { title }) %>
 <body>
     <%- include('./partials/nav.ejs') %>
     
-    <% clothes.forEach((c) => {%>
-        <%= c.description %>
-        <%= c.price %>
-        <%= c.size %>
-        <%= c.size_description %>
-        <%= c.min_age %>
-        <%= c.max_age %>
-        <%= c.color %>
-        <%= c.type %>
-        <%= c.category %>
-    <% }) %>
-
+    <main class="container">
+        <!-- Header com alinhamento e espaçamento consistente -->
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 48px;">
+            <h1 style="margin-bottom: 0;">Minhas Roupinhas</h1>
+            <a href="/clothes/create" class="btn btn-primary">Adicionar Nova</a>
+        </header>
+        
+        <!-- Grid responsivo de roupas -->
+        <div class="clothes-grid">
+            <% clothes.forEach((c) => { %>
+                <article class="clothes-item">
+                    <!-- Hierarquia visual clara -->
+                    <h3><%= c.description %></h3>
+                    
+                    <!-- Preço com destaque (alto contraste) -->
+                    <div class="clothes-price">R$ <%= c.price %></div>
+                    
+                    <!-- Informações organizadas com espaçamento consistente -->
+                    <div class="clothes-details">
+                        <span class="clothes-tag">
+                            📏 <%= c.size %> (<%= c.min_age %>-<%= c.max_age %> meses)
+                        </span>
+                        
+                        <span class="clothes-tag" style="background-color: <%= c.hex %>15; color: <%= c.hex %>;">
+                            🎨 <%= c.color %>
+                        </span>
+                        
+                        <span class="clothes-tag">
+                            👕 <%= c.type %>
+                        </span>
+                        
+                        <span class="clothes-tag">
+                            📂 <%= c.category %>
+                        </span>
+                    </div>
+                </article>
+            <% }) %>
+        </div>
+        
+        <!-- Mensagem quando não há roupas -->
+        <% if (clothes.length === 0) { %>
+            <div class="card" style="text-align: center; padding: 64px 32px;">
+                <h2>👶 Nenhuma roupinha cadastrada ainda</h2>
+                <p style="margin-bottom: 32px;">Comece adicionando a primeira roupinha do seu bebê!</p>
+                <a href="/clothes/create" class="btn btn-primary">Adicionar Primeira Roupinha</a>
+            </div>
+        <% } %>
+    </main>
+    
     <%- include('./partials/footer.ejs') %>
 </body>
 </html>

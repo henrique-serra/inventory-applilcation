@@ -1,39 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <%- include('./partials/head.ejs', { title }) %>
 <body>
     <%- include('./partials/nav.ejs') %>
-    <form action="/clothes/create" method="post">
-        <label for="description">Description</label>
-        <input type="text" name="description" id="description">
-
-        <label for="price">Price</label>
-        <input type="number" name="price" id="price">
-
-        <!-- Transformar em dropdown. Pense em uma forma de deixar o usuário criar um(a) novo(a) caso não exista -->
-        <label for="size">Size</label>
-        <input type="text" name="size" id="size">
-
-        <label for="min_age">Minimum Age</label>
-        <input type="number" name="min_age" id="min_age">
-
-        <label for="max_age">Maximum Age</label>
-        <input type="number" name="max_age" id="max_age">
-
-        <!-- Transformar em dropdown. Pense em uma forma de deixar o usuário criar um(a) novo(a) caso não exista -->
-        <label for="color">Color</label>
-        <input type="text" name="color" id="color">
-
-        <!-- Transformar em dropdown. Pense em uma forma de deixar o usuário criar um(a) novo(a) caso não exista -->
-        <label for="type">Type</label>
-        <input type="text" name="type" id="type">
+    
+    <main class="container">
+        <!-- Breadcrumb para contexto -->
+        <nav style="margin-bottom: 32px; color: #64748b;">
+            <a href="/clothes" style="color: #6366f1; text-decoration: none;">← Voltar para roupinhas</a>
+        </nav>
         
-        <!-- Transformar em dropdown. Pense em uma forma de deixar o usuário criar um(a) novo(a) caso não exista -->
-        <label for="category">Category</label>
-        <input type="text" name="category" id="category">
-        
-        <button type="submit">Submit</button>
-    </form>
+        <div class="grid">
+            <!-- Formulário ocupando 8 colunas para melhor legibilidade -->
+            <div class="col-12" style="max-width: 600px; margin: 0 auto;">
+                <div class="card">
+                    <h1>Adicionar Nova Roupinha</h1>
+                    <p style="margin-bottom: 32px;">Preencha as informações da nova peça do guarda-roupa</p>
+                    
+                    <form action="/clothes/create" method="post">
+                        <!-- Espaçamento consistente entre campos -->
+                        <div class="form-group">
+                            <label for="description">Descrição da Peça</label>
+                            <input type="text" name="description" id="description" 
+                                   placeholder="Ex: Body de algodão com estampa de ursinhos"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Preço (R$)</label>
+                            <input type="number" name="price" id="price" 
+                                   step="0.01" min="0" 
+                                   placeholder="0.00"
+                                   required>
+                        </div>
+
+                        <!-- Grid para campos relacionados -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                            <div class="form-group">
+                                <label for="min_age">Idade Mínima (meses)</label>
+                                <input type="number" name="min_age" id="min_age" 
+                                       min="0" max="36" 
+                                       placeholder="0"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="max_age">Idade Máxima (meses)</label>
+                                <input type="number" name="max_age" id="max_age" 
+                                       min="0" max="36" 
+                                       placeholder="3"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="size">Tamanho</label>
+                            <select name="size" id="size" required>
+                                <option value="">Selecione o tamanho</option>
+                                <option value="NB">RN - Recém-nascido</option>
+                                <option value="0-3M">0-3M - 0 a 3 meses</option>
+                                <option value="3-6M">3-6M - 3 a 6 meses</option>
+                                <option value="6-9M">6-9M - 6 a 9 meses</option>
+                                <option value="9-12M">9-12M - 9 a 12 meses</option>
+                                <option value="12-18M">12-18M - 12 a 18 meses</option>
+                                <option value="18-24M">18-24M - 18 a 24 meses</option>
+                                <option value="2T">2T - 2 anos</option>
+                                <option value="3T">3T - 3 anos</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color">Cor</label>
+                            <select name="color" id="color" required>
+                                <option value="">Selecione a cor</option>
+                                <option value="Pink">Rosa</option>
+                                <option value="Blue">Azul</option>
+                                <option value="Yellow">Amarelo</option>
+                                <option value="White">Branco</option>
+                                <option value="Green">Verde</option>
+                                <option value="Red">Vermelho</option>
+                                <option value="Purple">Roxo</option>
+                                <option value="Orange">Laranja</option>
+                                <option value="Gray">Cinza</option>
+                                <option value="Navy">Azul Marinho</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type">Tipo de Peça</label>
+                            <select name="type" id="type" required>
+                                <option value="">Selecione o tipo</option>
+                                <optgroup label="Roupas do Dia">
+                                    <option value="Bodysuit">Body</option>
+                                    <option value="T-shirt">Camiseta</option>
+                                    <option value="Pants">Calça</option>
+                                    <option value="Dress">Vestido</option>
+                                    <option value="Romper">Macacão</option>
+                                </optgroup>
+                                <optgroup label="Para Dormir">
+                                    <option value="Pajamas">Pijama</option>
+                                    <option value="Sleep Sack">Saco de Dormir</option>
+                                    <option value="Nightgown">Camisola</option>
+                                </optgroup>
+                                <optgroup label="Agasalhos">
+                                    <option value="Jacket">Jaqueta</option>
+                                    <option value="Hoodie">Moletom</option>
+                                    <option value="Sweater">Suéter</option>
+                                    <option value="Coat">Casaco</option>
+                                </optgroup>
+                                <optgroup label="Ocasiões Especiais">
+                                    <option value="Party Dress">Vestido de Festa</option>
+                                    <option value="Formal Shirt">Camisa Social</option>
+                                </optgroup>
+                                <optgroup label="Acessórios">
+                                    <option value="Hat">Chapéu</option>
+                                    <option value="Socks">Meias</option>
+                                    <option value="Bib">Babador</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Categoria</label>
+                            <select name="category" id="category" required>
+                                <option value="">Selecione a categoria</option>
+                                <option value="Everyday Wear">Uso Diário</option>
+                                <option value="Sleepwear">Para Dormir</option>
+                                <option value="Outerwear">Agasalhos</option>
+                                <option value="Special Occasion">Ocasião Especial</option>
+                                <option value="Underwear">Roupas Íntimas</option>
+                                <option value="Accessories">Acessórios</option>
+                            </select>
+                        </div>
+
+                        <!-- Botões organizados por peso visual -->
+                        <div class="button-group" style="margin-top: 48px;">
+                            <button type="submit" class="btn btn-primary">Adicionar Roupinha</button>
+                            <a href="/clothes" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    
     <%- include('./partials/footer.ejs') %>
+    
+    <!-- JavaScript para melhor UX -->
+    <script>
+        // Auto-ajustar idade máxima baseada no tamanho selecionado
+        document.getElementById('size').addEventListener('change', function() {
+            const sizeAges = {
+                'NB': {min: 0, max: 1},
+                '0-3M': {min: 0, max: 3},
+                '3-6M': {min: 3, max: 6},
+                '6-9M': {min: 6, max: 9},
+                '9-12M': {min: 9, max: 12},
+                '12-18M': {min: 12, max: 18},
+                '18-24M': {min: 18, max: 24},
+                '2T': {min: 24, max: 30},
+                '3T': {min: 30, max: 36}
+            };
+            
+            const selected = this.value;
+            if (sizeAges[selected]) {
+                document.getElementById('min_age').value = sizeAges[selected].min;
+                document.getElementById('max_age').value = sizeAges[selected].max;
+            }
+        });
+    </script>
 </body>
 </html>

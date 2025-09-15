@@ -1,0 +1,329 @@
+/* === RESET E VARIÁVEIS === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Cores principais - seguindo regra de neutrals saturados */
+    --color-primary: #6366f1;
+    --color-primary-dark: #4f46e5;
+    --color-secondary: #f1f5f9;
+    
+    /* Near-black e near-white ao invés de puro preto/branco */
+    --color-text-primary: #1e293b;
+    --color-text-secondary: #64748b;
+    --color-background: #fefefe;
+    --color-surface: #f8fafc;
+    --color-border: #e2e8f0;
+    
+    /* Sistema de espaçamento baseado em múltiplos de 8px */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-2xl: 64px;
+    
+    /* Tipografia - mantendo texto >= 16px */
+    --font-size-base: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 40px;
+    
+    /* Raio de borda consistente */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+}
+
+/* === TIPOGRAFIA === */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: var(--font-size-base);
+    line-height: 1.6; /* Line height ajustado para texto base */
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+}
+
+/* Ajuste de line-height conforme tamanho da fonte */
+h1 {
+    font-size: var(--font-size-3xl);
+    line-height: 1.2; /* Menor line-height para textos grandes */
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    color: var(--color-text-primary);
+}
+
+h2 {
+    font-size: var(--font-size-2xl);
+    line-height: 1.3;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--color-text-primary);
+}
+
+h3 {
+    font-size: var(--font-size-xl);
+    line-height: 1.4;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-primary);
+}
+
+p {
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-secondary);
+}
+
+/* === LAYOUT === */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+/* Grid de 12 colunas */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-md);
+}
+
+.col-12 { grid-column: span 12; }
+.col-6 { grid-column: span 6; }
+.col-4 { grid-column: span 4; }
+.col-3 { grid-column: span 3; }
+
+/* === NAVEGAÇÃO === */
+nav {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-xl);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--space-lg);
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-primary);
+}
+
+/* === CARDS === */
+.card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    /* Padding externo >= padding interno */
+    padding: var(--space-lg);
+    margin-bottom: var(--space-md);
+    /* Shadow suave seguindo regra 2x blur */
+    box-shadow: 0 4px 8px rgba(30, 41, 59, 0.08);
+    transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(30, 41, 59, 0.12);
+}
+
+.card-content > * + * {
+    margin-top: var(--space-sm); /* Espaçamento interno consistente */
+}
+
+/* === FORMULÁRIOS === */
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: var(--space-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    background-color: var(--color-background);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* === BOTÕES === */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Padding horizontal 2x o vertical */
+    padding: var(--space-sm) var(--space-lg);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* Alto contraste para elementos importantes */
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    /* Elementos mais próximos ficam mais claros - mas botão hover escurece para feedback */
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* Organização por peso visual - botão primário primeiro */
+.button-group {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+}
+
+.button-group .btn-primary {
+    order: 1; /* Elemento mais pesado primeiro */
+}
+
+.button-group .btn-secondary {
+    order: 2; /* Elemento mais leve depois */
+}
+
+/* === CLOTHES LIST === */
+.clothes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+
+.clothes-item {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    /* Elementos alinhados entre si */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.clothes-item h3 {
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-primary);
+}
+
+.clothes-price {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.clothes-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+}
+
+.clothes-tag {
+    background-color: var(--color-secondary);
+    color: var(--color-text-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* === FOOTER === */
+footer {
+    margin-top: var(--space-2xl);
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    text-align: center;
+    color: var(--color-text-secondary);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .nav-links {
+        gap: var(--space-md);
+    }
+    
+    .container {
+        padding: 0 var(--space-sm);
+    }
+    
+    /* Ajuste de texto para mobile */
+    h1 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    h2 {
+        font-size: var(--font-size-xl);
+    }
+}
